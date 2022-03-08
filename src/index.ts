@@ -1,11 +1,14 @@
 import express, {Request, Response } from 'express'
+import { createConnection } from 'typeorm';
 
-const app = express();
+createConnection().then(() => {
+	const app = express();
 
-app.use(express.json());
+	app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('hello')
+	app.get('/', (req: Request, res: Response) => {
+		res.send('hello')
+	})
+
+	app.listen(8000)
 })
-
-app.listen(8000)
